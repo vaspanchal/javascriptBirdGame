@@ -146,7 +146,7 @@ window.addEventListener('click', function(e)
             // collision detected
             object.markedForDeletion = true;
             score++;
-            ravenInterval--;
+            ravenInterval-10;
             explosions.push(new Explosion(object.x, object.y, object.width));
         }
        
