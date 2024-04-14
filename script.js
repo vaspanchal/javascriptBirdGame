@@ -16,7 +16,7 @@ ctx.font = '50px Impact'
 let gameOver = false;
 
 let timeToNextRaven = 0;
-let ravenInterval = 100;
+let ravenInterval = 700;
 let lastTime = 0;
 
 
@@ -146,7 +146,7 @@ window.addEventListener('click', function(e)
             // collision detected
             object.markedForDeletion = true;
             score++;
-            ravenInterval-10;
+            ravenInterval-=5;
             explosions.push(new Explosion(object.x, object.y, object.width));
         }
        
