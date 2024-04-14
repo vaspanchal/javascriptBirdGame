@@ -16,7 +16,7 @@ ctx.font = '50px Impact'
 let gameOver = false;
 
 let timeToNextRaven = 0;
-let ravenInterval = 700;
+let ravenInterval = 100;
 let lastTime = 0;
 
 
