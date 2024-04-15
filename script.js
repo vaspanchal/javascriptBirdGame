@@ -10,10 +10,13 @@ const collisionCtx = collisionCanvas.getContext('2d');
 collisionCanvas.width = window.innerWidth;
 collisionCanvas.height = window.innerHeight;
 
+let count = 1;
 let score = 0;
 ctx.font = '50px Impact'
 
 let gameOver = false;
+const gameOverSound = new Audio();
+gameOverSound.src = 'gameOver.wav';
 
 let timeToNextRaven = 0;
 let ravenInterval = 700;
@@ -103,10 +106,20 @@ class Raven {
         }
         
         //game Over condition
-        if(this.x < 0 - this.width) {
-            score--;
+        if(this.x < 0 - this.width && count == 1 ) {
+            document.getElementById('life1').remove();
         };
-        if (score < 0) gameOver = true;
+        if(this.x < 0 - this.width && count == 2 ) {
+            document.getElementById('life2').remove();
+        };
+        if(this.x < 0 - this.width && count == 3 ) {
+            document.getElementById('life3').remove();
+            gameOver = true;
+            gameOverSound.play()
+        };
+        if(this.x < 0 - this.width ) {
+            count++;
+        };
 
     }
     draw(){
@@ -129,10 +142,50 @@ function drawGameOver(){
     ctx.textAlign = 'center';
     ctx.fillStyle = 'black';
     ctx.fillText('GAME OVER!', canvas.width/2, canvas.height/2);
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = 'white';
     ctx.fillText('GAME OVER!', canvas.width/2 + 5, canvas.height/2 + 5);
-
 }
+
+// //my code for game timer
+// let timer;
+// let startTime;
+// let running = false;
+// let min = 0;
+// let sec = 0;
+// let msec = 0;
+
+// function startTimer(){
+//     if (score >= 0){
+//         startTime = Date.now();
+//         timer = setInterval(updateTime, 200);
+//         running = true;
+//     }
+//     else{
+//         clearInterval(timer);
+//         running = false;
+//         document.getElementById('display').innerHTML = "00 : 00 : 00" ;
+
+//     }
+// }
+
+// function updateTime(){
+//     msec++;
+//     if(msec == 1000){
+//         msec = 0;
+//         sec++;
+//         if(sec == 60){
+//             sec = 0;
+//             min++;
+//         }
+//     }
+//     document.getElementById('display').innerHTML = formatTime(min) + " : " + formatTime(sec) + " : " + formatTime(msec);
+// }
+
+// function formatTime(time){
+//     return time < 10 ? '0' + time : time; 
+// }
+
+// //my code ends here
 
 window.addEventListener('click', function(e)
 {
@@ -146,7 +199,6 @@ window.addEventListener('click', function(e)
             // collision detected
             object.markedForDeletion = true;
             score++;
-            ravenInterval-=5;
             explosions.push(new Explosion(object.x, object.y, object.width));
         }
        
@@ -175,6 +227,7 @@ function animate(timeStamp) { //timeStamp is inbult funtion that gives time
 
 
     drawScore();
+    // startTimer();
 
     [...ravens, ...explosions].forEach(object => object.update(deltaTime));
     [...ravens, ...explosions].forEach(object => object.draw());
