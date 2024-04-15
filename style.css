@@ -16,3 +16,33 @@ canvas{
 #collisionCanvas{
     opacity: 0;
 }
+
+h1{
+    position: absolute;
+    margin-top: 0;
+    margin-right: 0;
+    color: white;
+    font-size: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    top: 25px;
+    left: 1100px;
+    text-shadow: 50px, 5px, 4px, rgb(0, 0, 0);
+    
+}
+.lives{
+    position: absolute;
+    margin-top: 0;
+    margin-right: 0;
+}
+#life1{
+    top: 34px;
+    left: 1130px;
+}
+#life2{
+    top: 34px;
+    left: 1190px;
+}
+#life3{
+    top: 34px;
+    left: 1250px;
+}
