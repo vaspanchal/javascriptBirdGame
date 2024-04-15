@@ -33,16 +33,17 @@ h1{
     position: absolute;
     margin-top: 0;
     margin-right: 0;
+    object-fit: cover;
 }
 #life1{
-    top: 34px;
-    left: 1130px;
+    top: 6vh;
+    left: 85vw;
 }
 #life2{
-    top: 34px;
-    left: 1190px;
+    top: 6vh;
+    left: 90vw;
 }
 #life3{
-    top: 34px;
-    left: 1250px;
+    top: 6vh;
+    left: 95vw;
 }
